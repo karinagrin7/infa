@@ -1,0 +1,13 @@
+t = int(input())
+input()
+for i in range(t):
+    s = input()
+    if i < t - 1:
+        input()
+    n = len(s)
+    for k in range(1, n + 1):
+        if n % k == 0 and s == s[:k] * (n // k):
+            print(k)
+            break
+    if i < t - 1:
+        print()
