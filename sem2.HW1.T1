@@ -1,0 +1,32 @@
+def your_code(n, m, s, t, e):
+    g = [[] for _ in range(n)]
+    for i in e:
+        g[i[0]].append((i[1], i[2]))
+    d = [10**18] * n
+    p = [-1] * n
+    v = [0] * n
+    d[s] = 0
+    for _ in range(n):
+        x = -1
+        for i in range(n):
+            if v[i] == 0 and (x == -1 or d[i] < d[x]):
+                x = i
+        if x == -1 or d[x] == 10**18:
+            break
+        v[x] = 1
+        if x == t:
+            break
+        for a, b in g[x]:
+            if d[x] + b < d[a]:
+                d[a] = d[x] + b
+                p[a] = x
+    if d[t] == 10**18:
+        return "Ne mogu naiti marshrut! :'("
+    r = []
+    k = t
+    while k != -1:
+        r.append(k)
+        k = p[k]
+    r.reverse()
+    return f"{d[t]}\n{' '.join(map(str, r))}"
+     
