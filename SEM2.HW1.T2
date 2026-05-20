@@ -1,0 +1,21 @@
+def your_code(n, t):
+    I = 999999
+    d = []
+    for r in t:
+        s = []
+        for x in r:
+            if x == -1:
+                s.append(I)
+            else:
+                s.append(x)
+        d.append(s)
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                if d[i][k] + d[k][j] < d[i][j]:
+                    d[i][j] = d[i][k] + d[k][j]
+    for i in range(n):
+        for j in range(n):
+            if d[i][j] > I:
+                d[i][j] = I
+    return d
